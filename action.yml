@@ -23,15 +23,15 @@ inputs:
     required: false
     default: "false"
   fail-on:
-    description: Failure threshold: critical, warning, or none
+    description: "Failure threshold: critical, warning, or none"
     required: false
     default: "critical"
   format:
-    description: Output format: table, json, markdown, or sarif
+    description: "Output format: table, json, markdown, or sarif"
     required: false
     default: "table"
   workspaces:
-    description: Workspace mode: auto, true, false, or recursive
+    description: "Workspace mode: auto, true, false, or recursive"
     required: false
     default: "auto"
   skip:
