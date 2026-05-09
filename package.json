@@ -1,0 +1,31 @@
+{
+  "name": "dep-doctor",
+  "version": "1.0.0",
+  "description": "Offline-first dependency health scanner for npm, Python, Rust, and Go.",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "dep-doctor": "src/cli/index.js"
+  },
+  "main": "src/core/orchestrator.js",
+  "files": [
+    "src",
+    "action.yml",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "scan": "node src/cli/index.js scan . --skip=license-check --fail-on=none"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "dependencies",
+    "security",
+    "supply-chain",
+    "vulnerabilities",
+    "cli"
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules/
+.idea/
+dep-doctor-spec.md
+.dep-doctor-baseline.json
+.dep-doctor-rollback/
+dep-doctor.sarif
+*.tgz
+coverage/

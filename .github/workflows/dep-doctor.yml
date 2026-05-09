@@ -1,0 +1,43 @@
+name: Dependency Health Check
+
+on:
+  pull_request:
+    paths:
+      - "package.json"
+      - "package-lock.json"
+      - "yarn.lock"
+      - "pnpm-lock.yaml"
+      - "src/**"
+      - "test/**"
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "0 8 * * *"
+
+jobs:
+  dep-doctor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      security-events: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Run dep-doctor action
+        uses: ./
+        with:
+          baseline: true
+          upload-sarif: true
+          fail-on: critical
+          format: sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: dep-doctor.sarif

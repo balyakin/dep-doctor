@@ -1,0 +1,57 @@
+name: dep-doctor
+description: Offline-first dependency health scanner
+author: dep-doctor
+inputs:
+  path:
+    description: Project path to scan
+    required: false
+    default: "."
+  baseline:
+    description: Compare against .dep-doctor-baseline.json
+    required: false
+    default: "true"
+  update-baseline:
+    description: Refresh baseline from current scan
+    required: false
+    default: "false"
+  comment-on-pr:
+    description: Post a markdown report as a pull request comment when possible
+    required: false
+    default: "false"
+  upload-sarif:
+    description: Write dep-doctor.sarif for upload by GitHub code scanning workflows
+    required: false
+    default: "false"
+  fail-on:
+    description: Failure threshold: critical, warning, or none
+    required: false
+    default: "critical"
+  format:
+    description: Output format: table, json, markdown, or sarif
+    required: false
+    default: "table"
+  workspaces:
+    description: Workspace mode: auto, true, false, or recursive
+    required: false
+    default: "auto"
+  skip:
+    description: Comma-separated checks to skip
+    required: false
+  ignore:
+    description: Comma-separated package patterns to ignore
+    required: false
+  config:
+    description: Path to a dep-doctor config file
+    required: false
+  baseline-path:
+    description: Path to the baseline file
+    required: false
+  github-token:
+    description: GitHub token used for PR comments
+    required: false
+runs:
+  using: node20
+  main: src/action/action.js
+branding:
+  icon: activity
+  color: green
